@@ -23,7 +23,7 @@ const database = {
   },
   execute(statement) {
     if(statement.startsWith('create table')) {
-      this.createTable(statement);
+      return this.createTable(statement);
     }
   }
 };
