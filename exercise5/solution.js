@@ -1,5 +1,3 @@
-const statement = 'create table author (id number, name string, age number, city string, state string, country string)';
-
 const DatabaseError =  function(statement, message) {
   this.statement = statement;
   this.message = message;
@@ -8,13 +6,11 @@ const DatabaseError =  function(statement, message) {
 const database = {
   tables: {},
   createTable(statement) {
-    const tableRegex = /table\s(\w+)/g;
-    const columnsRegex = /\((\D+)\)/g;
+    const regexp = /create table ([a-z]+) \((.+)\)/;
+    const parsedStatement = statement.match(regexp);
     
-    const resultColumns = columnsRegex.exec(statement);
-    
-    const [_, tableName] = tableRegex.exec(statement);
-    const columns = resultColumns[1].split(', ');
+    const [_, tableName, resultColumns] = parsedStatement;
+    const columns = resultColumns.split(', ');
 
     this.tables = {[tableName]: {
       columns: {},
