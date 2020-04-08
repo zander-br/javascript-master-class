@@ -9,8 +9,8 @@ const database = {
     const regexp = /create table ([a-z]+) \((.+)\)/;
     const parsedStatement = statement.match(regexp);
     
-    const [_, tableName, resultColumns] = parsedStatement;
-    const columns = resultColumns.split(', ');
+    let [_, tableName, columns] = parsedStatement;
+    columns = columns.split(', ');
 
     this.tables = {[tableName]: {
       columns: {},
@@ -23,16 +23,12 @@ const database = {
     }
   },
   insert(statement) {
-    const tableRegex = /into\s(\w+)/g;
-    const columnsRegex = /\((\D+)\)/g;
-    const valuesRegex = /values\s\((.+)\)/g
-
-    const resultColumns = columnsRegex.exec(statement);
-    const resultValues = valuesRegex.exec(statement);
-
-    const [_, tableName] = tableRegex.exec(statement);
-    const columns = resultColumns[1].split(', ');
-    const values = resultValues[1].split(', ');
+    const regexp = /insert into ([a-z]+) \((.+)\) values \((.+)\)/;
+    const parsedStatement = statement.match(regexp);
+    
+    let [_, tableName, columns, values] = parsedStatement;
+    columns = columns.split(', ');
+    values = values.split(', ');
 
     let row = {}
     columns.forEach((column, index) => {
