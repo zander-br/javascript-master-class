@@ -58,7 +58,7 @@ database.execute("select name, age from author where id = 1");
 
 ## Dicas
 
-Você pode utilizar a operação `Array.prototype`.map para converter um array em outro e ainda a operação `Array.prototype.filter` para filtrar os dados. Você pode querer ignorar um grupo de captura, para isso utiliza a notação `?:` dentro do grupo, por exemplo `(?: where (.+))?`
+Você pode utilizar a operação `Array.prototype.map` para converter um array em outro e ainda a operação `Array.prototype.filter` para filtrar os dados. Você pode querer ignorar um grupo de captura, para isso utiliza a notação `?:` dentro do grupo, por exemplo `(?: where (.+))?`
 
 
 ## Conteúdo abordado neste exercício
