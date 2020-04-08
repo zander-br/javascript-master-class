@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Implemente o método `"insert"`. Para isso, é necessário, como sempre, extrair as informações a partir do comando, converter as informações em um objeto e inserir no array "data" da tabela correspondente.
+Implemente o método `"insert"`. Para isso, é necessário, como sempre, extrair as informações a partir do comando, converter as informações em um objeto e inserir no array `"data"` da tabela correspondente.
 
 ## Instruções
 
