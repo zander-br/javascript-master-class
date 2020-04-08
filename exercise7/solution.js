@@ -64,16 +64,20 @@ const database = {
     return rows;
   },
   delete(statement) {
-    const regexp = /delete from ([a-z]+) where (.+)/;
+    const regexp = /delete from ([a-z]+)(?: where (.+))?/;
     const parsedStatement = statement.match(regexp);
     const [_, tableName, whereClause] = parsedStatement;
 
-    const [columnWhere, valueWhere] = whereClause.split(' = ');
+    if(whereClause) {
+      const [columnWhere, valueWhere] = whereClause.split(' = ');
     
-    let rows = this.tables[tableName].data;
-    rows = rows.filter(row => row[columnWhere] !== valueWhere);
-
-    this.tables[tableName].data = rows;
+      let rows = this.tables[tableName].data;
+      rows = rows.filter(row => row[columnWhere] !== valueWhere);
+  
+      this.tables[tableName].data = rows;
+    } else {
+      this.tables[tableName].data = [];
+    }
   },
   execute(statement) {
     if(statement.startsWith('create table')) {
